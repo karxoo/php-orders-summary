@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orders Summary API Docs</title>
+<link rel="stylesheet" href="docs/swagger-ui.css" />
+</head>
+<body>
+  <div id="swagger-ui"></div>
+<script src="docs/swagger-ui-bundle.js"></script>
+<script src="docs/swagger-ui-standalone-preset.js"></script>
+<script src="docs/swagger-initializer.js"></script>
+  <script>
+    window.onload = function() {
+      const ui = SwaggerUIBundle({
+        url: "http://localhost:8000/openapi.yaml",
+        dom_id: '#swagger-ui',
+        presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+        layout: "BaseLayout"
+      });
+      window.ui = ui;
+    };
+  </script>
+</body>
+</html>

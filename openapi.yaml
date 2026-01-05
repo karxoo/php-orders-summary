@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: Orders Summary API (PHP)
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+paths:
+  /orders.php:
+    post:
+      summary: Upload CSV and get summary
+      description: Accepts a CSV file with columns sku, quantity, price; returns revenue and best-selling SKU.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Summary generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_revenue:
+                    type: number
+                    example: 710.0
+                  best_selling_sku:
+                    type: object
+                    properties:
+                      sku:
+                        type: string
+                        example: SKU-A123
+                      total_quantity:
+                        type: integer
+                        example: 5
+        '400':
+          description: Invalid request or CSV errors
+        '405':
+          description: Method not allowed
